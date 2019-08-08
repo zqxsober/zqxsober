@@ -23,6 +23,12 @@ public class ViewServiceImpl implements ViewService {
     public RcAreaCode queryAll(Integer rcAreaCodeId) {
         LogTool.info("查询列表，请求参数为：",rcAreaCodeId);
         RcAreaCode rcAreaCode = rcAreaCodeMapper.selectByPrimaryKey(rcAreaCodeId);
-        return rcAreaCode;
+        if (rcAreaCode != null) {
+            LogTool.info("查询结果为：",rcAreaCode);
+            return rcAreaCode;
+        }else{
+            LogTool.info("查询结果为空");
+            return null;
+        }
     }
 }
