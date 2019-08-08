@@ -1,5 +1,6 @@
 package com.zqxsober.controller;
 
+import com.zqxsober.config.LogTool;
 import com.zqxsober.domain.RcAreaCode;
 import com.zqxsober.service.ViewService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,14 @@ public class ViewController {
     @RequestMapping(value = "/areaCodeList", method = RequestMethod.POST)
     @ResponseBody
     public RcAreaCode areaCodeList(Integer rcAreaCodeId) {
-        RcAreaCode rcAreaCode =  viewService.queryAll(rcAreaCodeId);
-        return rcAreaCode;
+        try {
+            RcAreaCode rcAreaCode =  viewService.queryAll(rcAreaCodeId);
+            return rcAreaCode;
+        } catch (Exception e) {
+            LogTool.error("服务异常，请求参数：",rcAreaCodeId);
+            LogTool.error("异常信息：",e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 }

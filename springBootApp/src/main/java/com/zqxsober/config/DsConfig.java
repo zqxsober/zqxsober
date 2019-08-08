@@ -9,7 +9,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Component
